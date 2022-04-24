@@ -15,6 +15,23 @@ fun <T : Any> Node<T>.printInReverse() {
     print("${this.value}")
 }
 
+/**
+ * Given the head node of a linked list, the task is to reverse the linked list
+ */
+fun <T : Any> ReversedLinkedList(head : Node<T>?) : Node<T>? {
+    var currentNode = head
+    var nextNode : Node<T>?
+    var prevNode : Node<T>? = null
+    while(currentNode != null){
+        nextNode = currentNode.next
+        currentNode.next = prevNode
+        prevNode = currentNode
+        currentNode = nextNode
+    }
+
+    return prevNode
+}
+
 fun <T : Any> LinkedList<T>.getMiddleNode(): Node<T>? {
 //    var slow : Int = -1
 //    var fast : Int = 0
@@ -103,4 +120,11 @@ fun main() {
     println("\n Merged list :  \n")
     val sortedList = newList1.mergeSorted(newList2)
     print("$sortedList")
+
+    println("\n Reverse linkedlist given a head node -->\n")
+
+    val reversedNode = ReversedLinkedList(newList2.head)
+    print("$reversedNode")
+
+
 }
