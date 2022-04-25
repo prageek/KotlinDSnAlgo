@@ -18,10 +18,11 @@ fun <T : Any> Node<T>.printInReverse() {
 /**
  * Given the head node of a linked list, the task is to reverse the linked list
  */
-fun <T : Any> ReversedLinkedList(head : Node<T>?) : Node<T>? {
+fun <T : Any> reversedLinkedList(head : Node<T>?) : Node<T>? {
     var currentNode = head
     var nextNode : Node<T>?
     var prevNode : Node<T>? = null
+
     while(currentNode != null){
         nextNode = currentNode.next
         currentNode.next = prevNode
@@ -30,6 +31,26 @@ fun <T : Any> ReversedLinkedList(head : Node<T>?) : Node<T>? {
     }
 
     return prevNode
+}
+
+/**
+ * Remove duplicate nodes
+ * ex : 1, 3, 3, 5. 7, 7, 9 -> 1, 3, 5, 7, 8
+ *
+ */
+fun <T : Any> removeDuplicates(head: Node<T>?) : Node<T>? {
+    var current = head
+    val start = current
+    while (current != null) { // Need to move the current
+        var temp = current
+        while (temp != null && temp.value == current.value) {
+            temp = temp.next
+        }
+        current.next = temp
+        current = current.next // Moving current ahead
+    }
+
+    return start
 }
 
 fun <T : Any> LinkedList<T>.getMiddleNode(): Node<T>? {
@@ -123,8 +144,16 @@ fun main() {
 
     println("\n Reverse linkedlist given a head node -->\n")
 
-    val reversedNode = ReversedLinkedList(newList2.head)
+    val reversedNode = reversedLinkedList(newList2.head)
     print("$reversedNode")
+
+    val duplicateList = LinkedList<Int>(4, 4,  6, 9, 9, 9, 11, 15, 15, 15)
+
+    println("\n Remove duplicate elements : ")
+    print("$duplicateList")
+    println()
+    val newUniqueNode = removeDuplicates(duplicateList.head)
+    print("$newUniqueNode")
 
 
 }

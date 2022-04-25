@@ -1,3 +1,7 @@
+/*
+ * This is a LinkedList implementation that can be used with vararg to be initialized.
+ */
+
 import linkedlist.Node
 
 class LinkedList<T : Any> (vararg list: T ?): Iterable<T>, Collection<T>, MutableIterable<T>, MutableCollection<T> {
